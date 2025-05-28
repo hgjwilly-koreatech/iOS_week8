@@ -10,19 +10,14 @@ import SnapKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    // data
     let headers = ["","평일 운영시간", "주말 운영시간", ""]
-    
-    // component
     let tableView = UITableView(frame: .zero, style: .plain)
     
-    // life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints{ $0.edges.equalToSuperview() }
         
+        setTableView()
         register()
         setDelegateDatasource()
     }
@@ -38,27 +33,18 @@ extension ViewController { // cell
     }
     
     func tableView  (_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         switch indexPath.section {
-        case 0: return HeaderCell()
-        case 1,2: return CVCell()
-            /*
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell2.identifier, for: indexPath) as? TableViewCell2
-            else { return UITableViewCell() }
-            //cell.dataBind()
-            cell.isWeekend(indexPath)
-            return cell
-             */
-        case 3: return FooterCell()
-        default: return UITableViewCell()
+            case 0: return HeaderCell()
+            case 1,2: return CVCell()
+            case 3: return FooterCell()
+            default: return UITableViewCell()
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
         case 0: return 104
-        case 1,2 : return 120 //CGFloat(TableViewCellCollectionView.collectionViewHegiht())
-            
+        case 1,2 : return 120
         case 3 : return 51
         default: return 0
         }
@@ -85,6 +71,10 @@ extension ViewController { // Header
 
 extension ViewController {
     
+    private func setTableView() {
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints{ $0.edges.equalToSuperview() }
+    }
     private func register() {
         //tableView.register(HeaderCell.self, forCellReuseIdentifier: HeaderCell.identifier)
         tableView.register(CVCell.self, forCellReuseIdentifier: CVCell.identifier)
