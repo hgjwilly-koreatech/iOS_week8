@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class CollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource {
+class CollectionView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
     
     // data
     private let data = [["시간","시작시간","마감시간"], // section1
@@ -25,31 +25,14 @@ class CollectionView: UICollectionView, UICollectionViewDelegate, UICollectionVi
     }()
     
     
-    // initializer
-    /*
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .blue
+        
         addSubview(collectionView)
-        collectionView.backgroundColor = .yellow // <<<<<<<<<<< collectionView는 보이고, cell이 안쌓이는 상태
-        collectionView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
+        collectionView.backgroundColor = .yellow // <<<<< 이게 보이는 상태임
+        collectionView.snp.makeConstraints { $0.edges.equalToSuperview() }
     }
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }*/
-    
-    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
-        super.init(frame: frame, collectionViewLayout: layout)
-        backgroundColor = .blue
-        addSubview(collectionView)
-        collectionView.backgroundColor = .yellow // <<<<<<<<<<< collectionView는 보이고, cell이 안쌓이는 상태
-        collectionView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-    }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
