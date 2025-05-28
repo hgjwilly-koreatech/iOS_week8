@@ -1,5 +1,5 @@
 //
-//  TableViewCellHeader.swift
+//  HeaderCell.swift
 //  week8
 //
 //  Created by 홍기정 on 5/28/25.
@@ -8,9 +8,9 @@
 import UIKit
 import SnapKit
 
-class TableViewCellHeader: UITableViewCell {
+class HeaderCell: UITableViewCell {
     
-    static let identifier = "TableViewCellHeader"
+    static let identifier = "HeaderCell"
     
     // component
     let titleLabel = {
@@ -66,7 +66,7 @@ class TableViewCellHeader: UITableViewCell {
 
 }
 
-extension TableViewCellHeader {
+extension HeaderCell {
     
     private func setLayout(){
         [titleLabel, locationTitleLabel, locationDetailLabel, phonenumberTitleLabel, phonenumberDetailLabel].forEach { addSubview($0) }

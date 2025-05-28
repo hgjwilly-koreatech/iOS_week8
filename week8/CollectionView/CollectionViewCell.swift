@@ -16,6 +16,8 @@ class CollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSeparator(width: 10)
+        contentView.backgroundColor = .blue
+        backgroundColor = .black
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

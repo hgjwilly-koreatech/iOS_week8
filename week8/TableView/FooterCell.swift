@@ -1,5 +1,5 @@
 //
-//  TableViewCellFooter.swift
+//  FooterCell.swift
 //  week8
 //
 //  Created by 홍기정 on 5/28/25.
@@ -8,14 +8,14 @@
 import UIKit
 import SnapKit
 
-class TableViewCellFooter: UITableViewCell {
+class FooterCell: UITableViewCell {
     static let footerFontSize = 20
     
     // data
     private var updateDate = "2024.03.09"
     
     // identifier
-    static let identifier = "TableViewCellFooter"
+    static let identifier = "FooterCell"
     
     // component
     let updateLabel = {

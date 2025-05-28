@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class Header: UITableViewHeaderFooterView {
+class MyHeader: UITableViewHeaderFooterView {
     
     
 }
