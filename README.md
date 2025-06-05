@@ -1,5 +1,5 @@
-<설계>
-ViewController (tableView 보여주는 ViewController)
+<설계>\n
+ViewController (tableView 보여주는 ViewController)\n
 └─ tableView
     └─ tableViewHeader                 ← 커스텀 헤더
     ├─ HeaderCell                      ← 헤더 셀
