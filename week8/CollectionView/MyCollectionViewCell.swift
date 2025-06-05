@@ -8,16 +8,30 @@
 import UIKit
 import SnapKit
 
-class CollectionViewCell: UICollectionViewCell {
+class MyCollectionViewCell: UICollectionViewCell {
+    
     static let cellHeight = 34
     
+    // identifier
     static let identifier = "CollectionViewCell"
+    
+    // component
+    let label = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 16)
+        label.textColor = .black
+        return label
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSeparator(width: 10)
+        //addSeparator(width: 10)
         contentView.backgroundColor = .blue
-        backgroundColor = .black
+        contentView.addSubview(label)
+        
+        label.snp.makeConstraints{
+            $0.center.equalToSuperview()
+        }
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -25,8 +39,19 @@ class CollectionViewCell: UICollectionViewCell {
     
 }
 
-extension CollectionViewCell {
+extension MyCollectionViewCell {
     
+    func dataBind(_ data:String,_ row: Int){
+        
+        label.text = data
+        
+        switch row{
+            case 0,1,2 : contentView.backgroundColor = .red
+            default: contentView.backgroundColor = .brown
+        }
+    }
+    
+    /*
     func addSeparator(width: CGFloat) {
         let border: CALayer = {
             let border = CALayer()
@@ -38,4 +63,6 @@ extension CollectionViewCell {
         let index = layer.sublayers?.count ?? 0
         layer.insertSublayer(border, at: UInt32(index))
     }
+     */
 }
+

@@ -13,6 +13,7 @@ class HeaderCell: UITableViewCell {
     static let identifier = "HeaderCell"
     
     // component
+    /*
     let titleLabel = {
         let label = UILabel()
         label.text = "24-2학기 학생식당 운영시간"
@@ -21,6 +22,7 @@ class HeaderCell: UITableViewCell {
         label.font = .systemFont(ofSize: 20)
         return label
     }()
+     */
     let locationTitleLabel = {
         let label = UILabel()
         label.text = "위치"
@@ -69,8 +71,9 @@ class HeaderCell: UITableViewCell {
 extension HeaderCell {
     
     private func setLayout(){
-        [titleLabel, locationTitleLabel, locationDetailLabel, phonenumberTitleLabel, phonenumberDetailLabel].forEach { addSubview($0) }
+        [locationTitleLabel, locationDetailLabel, phonenumberTitleLabel, phonenumberDetailLabel].forEach { addSubview($0) }
         
+        /*
         titleLabel.snp.makeConstraints{
             $0.top.equalToSuperview().offset(12)
             $0.leading.equalToSuperview().offset(24)
@@ -86,6 +89,24 @@ extension HeaderCell {
         phonenumberTitleLabel.snp.makeConstraints{
             $0.top.equalTo(locationTitleLabel.snp.bottom).offset(4)
             $0.leading.equalToSuperview().offset(24)
+        }
+        phonenumberDetailLabel.snp.makeConstraints{
+            $0.top.equalTo(locationTitleLabel.snp.bottom).offset(4)
+            $0.leading.equalTo(phonenumberTitleLabel.snp.trailing).offset(8)
+        }
+         */
+        
+        
+        locationTitleLabel.snp.makeConstraints{
+            $0.top.leading.equalToSuperview()
+        }
+        locationDetailLabel.snp.makeConstraints{
+            $0.top.equalTo(locationTitleLabel)
+            $0.leading.equalTo(locationTitleLabel.snp.trailing).offset(8)
+        }
+        phonenumberTitleLabel.snp.makeConstraints{
+            $0.top.equalTo(locationTitleLabel.snp.bottom).offset(4)
+            $0.leading.equalToSuperview()
         }
         phonenumberDetailLabel.snp.makeConstraints{
             $0.top.equalTo(locationTitleLabel.snp.bottom).offset(4)

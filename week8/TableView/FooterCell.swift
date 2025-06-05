@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 class FooterCell: UITableViewCell {
+    
     static let footerFontSize = 20
     
     // data
