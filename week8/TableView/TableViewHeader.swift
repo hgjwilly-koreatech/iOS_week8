@@ -15,7 +15,7 @@ class TableViewHeader: UITableViewHeaderFooterView {
     let headerLabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = .systemFont(ofSize: 18)
+        label.font = .systemFont(ofSize: 18, weight: .medium)
         return label
     }()
     
@@ -25,7 +25,13 @@ class TableViewHeader: UITableViewHeaderFooterView {
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = .blue
+        //backgroundColor = .orange
+        //contentView.backgroundColor = .yellow
+        contentView.addSubview(headerLabel)
+        headerLabel.snp.makeConstraints{
+            $0.leading.equalToSuperview().inset(24)
+            $0.centerY.equalToSuperview()
+        }
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

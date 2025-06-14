@@ -13,46 +13,39 @@ class HeaderCell: UITableViewCell {
     static let identifier = "HeaderCell"
     
     // component
-    /*
     let titleLabel = {
         let label = UILabel()
         label.text = "24-2학기 학생식당 운영시간"
         label.textColor = .black
-        //label.font = UIFont(name: <#T##String#>, size: <#T##CGFloat#>)
-        label.font = .systemFont(ofSize: 20)
+        label.font = .systemFont(ofSize: 20, weight: .bold)
         return label
     }()
-     */
-    let locationTitleLabel = {
+    let locationLabel = {
         let label = UILabel()
         label.text = "위치"
         label.textColor = .red
-        //label.font = UIFont(name: <#T##String#>, size: <#T##CGFloat#>)
-        label.font = .systemFont(ofSize: 20)
+        label.font = .systemFont(ofSize: 14, weight: .light)
         return label
     }()
     let locationDetailLabel = {
         let label = UILabel()
         label.text = "학생회관 2층"
         label.textColor = .blue
-        //label.font = UIFont(name: <#T##String#>, size: <#T##CGFloat#>)
-        label.font = .systemFont(ofSize: 20)
+        label.font = .systemFont(ofSize: 14, weight: .light)
         return label
     }()
-    let phonenumberTitleLabel = {
+    let phonenumberLabel = {
         let label = UILabel()
         label.text = "전화번호"
         label.textColor = .red
-        //label.font = UIFont(name: <#T##String#>, size: <#T##CGFloat#>)
-        label.font = .systemFont(ofSize: 20)
+        label.font = .systemFont(ofSize: 14, weight: .light)
         return label
     }()
     let phonenumberDetailLabel = {
         let label = UILabel()
         label.text = "041-560-1278"
         label.textColor = .blue
-        //label.font = UIFont(name: <#T##String#>, size: <#T##CGFloat#>)
-        label.font = .systemFont(ofSize: 20)
+        label.font = .systemFont(ofSize: 14, weight: .light)
         return label
     }()
     
@@ -60,6 +53,8 @@ class HeaderCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        //backgroundColor = .yellow
+        //contentView.backgroundColor = .orange
         setLayout()
     }
     required init?(coder: NSCoder) {
@@ -71,46 +66,33 @@ class HeaderCell: UITableViewCell {
 extension HeaderCell {
     
     private func setLayout(){
-        [locationTitleLabel, locationDetailLabel, phonenumberTitleLabel, phonenumberDetailLabel].forEach { addSubview($0) }
         
-        /*
-        titleLabel.snp.makeConstraints{
+        [titleLabel, locationLabel, locationDetailLabel, phonenumberLabel, phonenumberDetailLabel].forEach { addSubview($0) }
+        
+        titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(12)
-            $0.leading.equalToSuperview().offset(24)
+            $0.height.equalTo(32)
+            $0.leading.equalToSuperview().inset(24)
         }
-        locationTitleLabel.snp.makeConstraints{
+        locationLabel.snp.makeConstraints{
             $0.top.equalTo(titleLabel.snp.bottom).offset(4)
-            $0.leading.equalToSuperview().offset(24)
+            $0.height.equalTo(22)
+            $0.leading.equalTo(titleLabel)
         }
         locationDetailLabel.snp.makeConstraints{
-            $0.top.equalTo(titleLabel.snp.bottom).offset(4)
-            $0.leading.equalTo(locationTitleLabel.snp.trailing).offset(8)
+            $0.top.bottom.equalTo(locationLabel)
+            $0.leading.equalTo(locationLabel.snp.trailing).offset(8)
         }
-        phonenumberTitleLabel.snp.makeConstraints{
-            $0.top.equalTo(locationTitleLabel.snp.bottom).offset(4)
-            $0.leading.equalToSuperview().offset(24)
-        }
-        phonenumberDetailLabel.snp.makeConstraints{
-            $0.top.equalTo(locationTitleLabel.snp.bottom).offset(4)
-            $0.leading.equalTo(phonenumberTitleLabel.snp.trailing).offset(8)
-        }
-         */
-        
-        
-        locationTitleLabel.snp.makeConstraints{
-            $0.top.leading.equalToSuperview()
-        }
-        locationDetailLabel.snp.makeConstraints{
-            $0.top.equalTo(locationTitleLabel)
-            $0.leading.equalTo(locationTitleLabel.snp.trailing).offset(8)
-        }
-        phonenumberTitleLabel.snp.makeConstraints{
-            $0.top.equalTo(locationTitleLabel.snp.bottom).offset(4)
-            $0.leading.equalToSuperview()
+        phonenumberLabel.snp.makeConstraints{
+            $0.top.equalTo(locationLabel.snp.bottom)
+            $0.height.equalTo(22)
+            $0.leading.equalTo(locationLabel)
         }
         phonenumberDetailLabel.snp.makeConstraints{
-            $0.top.equalTo(locationTitleLabel.snp.bottom).offset(4)
-            $0.leading.equalTo(phonenumberTitleLabel.snp.trailing).offset(8)
+            $0.top.equalTo(phonenumberLabel)
+            $0.height.equalTo(22)
+            $0.bottom.equalToSuperview().inset(12)
+            $0.leading.equalTo(phonenumberLabel.snp.trailing).offset(8)
         }
     }
 }

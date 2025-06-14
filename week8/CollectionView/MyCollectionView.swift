@@ -9,7 +9,11 @@ import UIKit
 import SnapKit
 
 
-class MyCollectionView: UIView, UICollectionViewDelegate {
+class MyCollectionView: UIView {
+    
+    // lines
+    static let boldLine: CGFloat = 2
+    static let lightLine: CGFloat = 1
     
     // item size
     let sizeForItem: CGSize = CGSize(width: 114, height: 36)
@@ -25,23 +29,26 @@ class MyCollectionView: UIView, UICollectionViewDelegate {
             let layout = UICollectionViewFlowLayout()
             layout.scrollDirection = .vertical
             
-            layout.minimumLineSpacing = 0
+            layout.minimumLineSpacing = lightLine
             layout.minimumInteritemSpacing = 0
 
             return layout
         }()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .yellow // <<<<< 이게 보이는 상태임
+        collectionView.backgroundColor = .systemGray3
         return collectionView
     }()
     
     // life cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .blue
+        backgroundColor = .systemGray3
         
         addSubview(collectionView)
-        collectionView.snp.makeConstraints { $0.edges.equalToSuperview() }
+        collectionView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.top.bottom.equalToSuperview().inset(MyCollectionView.boldLine)
+        }
         
         collectionView.register(MyCollectionViewCell.self, forCellWithReuseIdentifier: MyCollectionViewCell.identifier)
         collectionView.delegate = self
@@ -50,7 +57,6 @@ class MyCollectionView: UIView, UICollectionViewDelegate {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 
 }
 
@@ -80,6 +86,9 @@ extension MyCollectionView: UICollectionViewDelegateFlowLayout{
     
     // sizeForItemAt
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return sizeForItem
+        
+        let cellWidth = collectionView.bounds.width/3
+        let cellHeight = collectionView.bounds.height/4
+        return CGSize(width: cellWidth, height: cellHeight)
     }
 }

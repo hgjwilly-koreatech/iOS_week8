@@ -26,7 +26,6 @@ class MyCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         //addSeparator(width: 10)
-        contentView.backgroundColor = .blue
         contentView.addSubview(label)
         
         label.snp.makeConstraints{
@@ -46,8 +45,8 @@ extension MyCollectionViewCell {
         label.text = data
         
         switch row{
-            case 0,1,2 : contentView.backgroundColor = .red
-            default: contentView.backgroundColor = .brown
+            case 0,1,2 : contentView.backgroundColor = .lightGray
+            default: contentView.backgroundColor = .white
         }
     }
     

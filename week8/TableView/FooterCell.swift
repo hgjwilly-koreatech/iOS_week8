@@ -22,7 +22,7 @@ class FooterCell: UITableViewCell {
     let updateLabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = .systemFont(ofSize: CGFloat(footerFontSize))
+        label.font = .systemFont(ofSize: 12, weight: .light)
         return label
     }()
     

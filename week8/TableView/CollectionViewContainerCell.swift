@@ -23,7 +23,8 @@ class CollectionViewContainerCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(collectionView)
         collectionView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(24)
+            $0.top.bottom.equalToSuperview()
         }
     }
     required init?(coder: NSCoder) {
