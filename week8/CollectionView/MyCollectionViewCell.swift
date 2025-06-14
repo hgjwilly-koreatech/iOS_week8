@@ -40,28 +40,18 @@ class MyCollectionViewCell: UICollectionViewCell {
 
 extension MyCollectionViewCell {
     
-    func dataBind(_ data:String,_ row: Int){
+    func dataBind(_ data:String, _ indexPath : IndexPath){
         
         label.text = data
         
-        switch row{
-            case 0,1,2 : contentView.backgroundColor = .lightGray
-            default: contentView.backgroundColor = .white
+        switch indexPath.section{
+        case 0 :
+            contentView.backgroundColor = .cvCell
+            label.font = UIFont(name: "PretendardGOV-Medium", size: 14)
+        default:
+            contentView.backgroundColor = .white
+            label.font = UIFont(name: "PretendardGOV-Regular", size: 15)
         }
     }
-    
-    /*
-    func addSeparator(width: CGFloat) {
-        let border: CALayer = {
-            let border = CALayer()
-            border.borderColor = UIColor.black.cgColor
-            border.name = "separator"
-            border.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: width)
-            return border
-        }()
-        let index = layer.sublayers?.count ?? 0
-        layer.insertSublayer(border, at: UInt32(index))
-    }
-     */
 }
 

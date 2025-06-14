@@ -11,17 +11,13 @@ import SnapKit
 
 class MyCollectionView: UIView {
     
-    // lines
-    static let boldLine: CGFloat = 2
-    static let lightLine: CGFloat = 1
-    
     // item size
-    let sizeForItem: CGSize = CGSize(width: 114, height: 36)
+    //let sizeForItem: CGSize = CGSize(width: 114, height: 36)
     // data
-    private let data = ["시간","시작시간","마감시간",
-                        "아침","8:00","9:30",
-                        "점심","11:30","13:30",
-                        "저녁","17:30","18:30"]
+    private let data = [["시간","시작시간","마감시간"],
+                        ["아침","8:00","9:30",
+                         "점심","11:30","13:30",
+                         "저녁","17:30","18:30"]]
     
     // component
     let collectionView = {
@@ -29,30 +25,25 @@ class MyCollectionView: UIView {
             let layout = UICollectionViewFlowLayout()
             layout.scrollDirection = .vertical
             
-            layout.minimumLineSpacing = lightLine
+            layout.minimumLineSpacing = 1
             layout.minimumInteritemSpacing = 0
 
             return layout
         }()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .systemGray3
+        collectionView.backgroundColor = .cvSeparator
         return collectionView
     }()
     
     // life cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .systemGray3
+        backgroundColor = .cvSeparator
         
         addSubview(collectionView)
-        collectionView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
-            $0.top.bottom.equalToSuperview().inset(MyCollectionView.boldLine)
-        }
         
-        collectionView.register(MyCollectionViewCell.self, forCellWithReuseIdentifier: MyCollectionViewCell.identifier)
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        setLayout()
+        register()
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -64,11 +55,11 @@ extension MyCollectionView: UICollectionViewDataSource {
     
     // numberOfSections
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 2
     }
     // numberOfItems InSection
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.count
+        return data[section].count
     }
     
     // cellForItem At
@@ -77,9 +68,11 @@ extension MyCollectionView: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyCollectionViewCell.identifier, for: indexPath) as? MyCollectionViewCell
         else { return UICollectionViewCell() }
         
-        cell.dataBind(data[indexPath.row], indexPath.row)
+        cell.dataBind(data[indexPath.section][indexPath.row], indexPath)
         return cell
     }
+    
+    
 }
 
 extension MyCollectionView: UICollectionViewDelegateFlowLayout{
@@ -88,7 +81,29 @@ extension MyCollectionView: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let cellWidth = collectionView.bounds.width/3
-        let cellHeight = collectionView.bounds.height/4
+        let cellHeight = (collectionView.bounds.height-8)/4
         return CGSize(width: cellWidth, height: cellHeight)
+    }
+    
+    // inset for section
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        if (section == 0) { return UIEdgeInsets(top: 2, left: 0, bottom: 2, right: 0) }
+        else { return UIEdgeInsets(top: 0, left: 0, bottom: 2, right: 0) }
+    }
+}
+
+extension MyCollectionView {
+    
+    func setLayout() {
+        collectionView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
+    
+    func register() {
+        collectionView.register(MyCollectionViewCell.self, forCellWithReuseIdentifier: MyCollectionViewCell.identifier)
+        collectionView.delegate = self
+        collectionView.dataSource = self
     }
 }

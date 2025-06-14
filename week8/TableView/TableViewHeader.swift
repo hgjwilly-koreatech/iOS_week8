@@ -14,7 +14,8 @@ class TableViewHeader: UITableViewHeaderFooterView {
     
     let headerLabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = .koin
+        label.font = UIFont(name: "PretendardGOV-Bold", size: 18)
         label.font = .systemFont(ofSize: 18, weight: .medium)
         return label
     }()

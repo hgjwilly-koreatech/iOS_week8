@@ -17,35 +17,36 @@ class HeaderCell: UITableViewCell {
         let label = UILabel()
         label.text = "24-2학기 학생식당 운영시간"
         label.textColor = .black
+        label.font = UIFont(name: "PretendardGOV-Bold", size: 20)
         label.font = .systemFont(ofSize: 20, weight: .bold)
         return label
     }()
     let locationLabel = {
         let label = UILabel()
         label.text = "위치"
-        label.textColor = .red
-        label.font = .systemFont(ofSize: 14, weight: .light)
+        label.textColor = .information
+        label.font = UIFont(name: "PretendardGOV-Medium", size: 14)
         return label
     }()
     let locationDetailLabel = {
         let label = UILabel()
         label.text = "학생회관 2층"
-        label.textColor = .blue
-        label.font = .systemFont(ofSize: 14, weight: .light)
+        label.textColor = .information
+        label.font = UIFont(name: "PretendardGOV-Regular", size: 14)
         return label
     }()
     let phonenumberLabel = {
         let label = UILabel()
         label.text = "전화번호"
-        label.textColor = .red
-        label.font = .systemFont(ofSize: 14, weight: .light)
+        label.textColor = .information
+        label.font = UIFont(name: "PretendardGOV-Medium", size: 14)
         return label
     }()
     let phonenumberDetailLabel = {
         let label = UILabel()
         label.text = "041-560-1278"
-        label.textColor = .blue
-        label.font = .systemFont(ofSize: 14, weight: .light)
+        label.textColor = .information
+        label.font = UIFont(name: "PretendardGOV-Regular", size: 14)
         return label
     }()
     

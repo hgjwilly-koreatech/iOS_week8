@@ -21,8 +21,8 @@ class FooterCell: UITableViewCell {
     // component
     let updateLabel = {
         let label = UILabel()
-        label.textColor = .black
-        label.font = .systemFont(ofSize: 12, weight: .light)
+        label.textColor = .footerCell
+        label.font = UIFont(name: "PretendardGOV-Regular", size: 12)
         return label
     }()
     
